@@ -39,7 +39,7 @@ const LandingPage: React.FC = () => {
             </h1>
           </div>
           <div className="pic">
-            <img src={pic1} alt="Digital space illustration" />
+            <img src={pic1} alt="" />
           </div>
         </div>
       </main>
@@ -48,3 +48,4 @@ const LandingPage: React.FC = () => {
 };
 
 export default LandingPage;
+
