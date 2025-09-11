@@ -1,15 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import pic1 from './assets/link-pic.png';
 import './Styles.css';
 
 const LandingPage: React.FC = () => {
-  const navigate = useNavigate();
-
-  const signInClick = () => {
-    navigate('/Signup'); 
-  };
-
+ 
   return (
     <div className="page">
       <header>
@@ -22,7 +16,7 @@ const LandingPage: React.FC = () => {
           </div>
           <div className="information">
             <button className="contact">Contact Us</button>
-            <button className="signIn" onClick={signInClick}>
+            <button className="signIn">
               Sign In
             </button>
           </div>
@@ -48,4 +42,3 @@ const LandingPage: React.FC = () => {
 };
 
 export default LandingPage;
-
