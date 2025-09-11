@@ -63,3 +63,19 @@
 
 }
 /*Signup page style below*/
+
+
+.signup-div {
+  display: flex;
+  min-height: 100vh;
+  background-color: white;
+
+}
+
+.form-div {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
