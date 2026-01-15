@@ -50,7 +50,9 @@ Sign Up Page
 -
 <img width="1400" height="800" alt="Sign up page" src="https://github.com/user-attachments/assets/ece1e84d-2ce1-49f1-8821-53504ceadbd7" />
 
-
+Sign In Page
+-
+<img width="1400" height="800" alt="Sign in page" src="https://github.com/user-attachments/assets/945cdeda-cd3b-4cd4-b69a-d1704d828be7" />
 
 
 
