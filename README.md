@@ -59,5 +59,7 @@ Redirection View
 
 <img width="1400" height="800" alt="Redirecting view" src="https://github.com/user-attachments/assets/b81c7972-61ff-488b-9d33-b3f28ea0bcb1" />
 
+Add Link Page
+-
 
-
+<img width="1400" height="800" alt="Add Link Page" src="https://github.com/user-attachments/assets/ecc48f91-09e3-496e-a20d-1de7199c6ccd" />
