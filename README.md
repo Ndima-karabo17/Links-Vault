@@ -42,5 +42,17 @@ Workflow of my project
 
 Screenshots of workflow
 -
+Landing Page
+-
 <img width="1400" height="800" alt="landing page" src="https://github.com/user-attachments/assets/e77a8cbd-61f4-4cde-8842-1b3632f65911" />
+
+Sign Up Page
+-
+<img width="1400" height="800" alt="Sign up page" src="https://github.com/user-attachments/assets/ece1e84d-2ce1-49f1-8821-53504ceadbd7" />
+
+
+
+
+
+
 
