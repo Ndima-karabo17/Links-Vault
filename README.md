@@ -54,7 +54,10 @@ Sign In Page
 -
 <img width="1400" height="800" alt="Sign in page" src="https://github.com/user-attachments/assets/945cdeda-cd3b-4cd4-b69a-d1704d828be7" />
 
+Redirection View
+-
 
+<img width="1400" height="800" alt="Redirecting view" src="https://github.com/user-attachments/assets/b81c7972-61ff-488b-9d33-b3f28ea0bcb1" />
 
 
 
