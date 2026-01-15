@@ -40,4 +40,7 @@ Workflow of my project
 10. Next to your link details there's Edit Details button if you made a mistake also to VISIT SITE of the link you entered.
 11. There's "x" button if you nolonger want that link in your collections
 
+Screenshots of workflow
+-
+<img width="1400" height="800" alt="landing page" src="https://github.com/user-attachments/assets/e77a8cbd-61f4-4cde-8842-1b3632f65911" />
 
