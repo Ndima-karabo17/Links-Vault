@@ -33,7 +33,7 @@ Functional Breakdown of my site
 3. Open terminal and verify if you are inside Links-Vault if not navigate to it
 4. Run npm install in terminal inside Links-Vault
 5. followed by npm run dev
- 
+6. Follow the link that will show to see the project
 
 
 Workflow of my project
