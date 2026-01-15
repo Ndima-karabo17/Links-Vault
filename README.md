@@ -32,8 +32,9 @@ Functional Breakdown of my site
 2. Clone my project repo(https://github.com/Ndima-karabo17/Links-Vault.git) in Visual Studio Code
 3. Open terminal and verify if you are inside Links-Vault if not navigate to it
 4. Run npm install in terminal inside Links-Vault
-5. followed by npm run dev
-6. Follow the link that will show to see the project
+5. npm install react-router-dom
+6. followed by npm run dev
+7. Follow the link that will show to see the project
 
 
 Workflow of my project
