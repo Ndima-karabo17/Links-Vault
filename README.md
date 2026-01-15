@@ -63,3 +63,7 @@ Add Link Page
 -
 
 <img width="1400" height="800" alt="Add Link Page" src="https://github.com/user-attachments/assets/ecc48f91-09e3-496e-a20d-1de7199c6ccd" />
+
+Link View Page
+-
+<img width="1400" height="800" alt="Link View Page" src="https://github.com/user-attachments/assets/9591fca7-3e28-45e3-af13-50b35ec1592e" />
