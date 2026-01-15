@@ -1,41 +1,78 @@
-import React from 'react';
-import pic1 from './assets/side-pic.png';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Styles.css';
 
 const SignIn: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false); // New state for the message
+  const navigate = useNavigate();
+
+  const handleSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+
+    console.log("Signing in with:", email, password);
+    
+    setIsSuccess(true);
+
+  
+    setTimeout(() => {
+      navigate('/add-link');
+    }, 2000);
+  };
+
   return (
-    <div className="all">
-      <h1 className="signup-heading">Sign in with email</h1>
-      <div className="signup-div">
+    <div className="auth-container">
+      <div className="auth-card">
+        
+        {isSuccess ? (
+          <div className="loading-state">
+            <div className="spinner"></div> 
+            <h2 className="success-text">Successfully Signed In</h2>
+            <p>Redirecting to add link...</p>
+          </div>
+        ) : (
+          <>
+            <h1 className="auth-heading">Welcome Back</h1>
+            <p className="auth-subheading">Enter your details to access your links.</p>
 
-        <div className="form-div">
-          <form>
-            <label htmlFor="email">
-              Email:
-              <input type="email" className="input" readOnly/>
-            </label>
+            <form onSubmit={handleSignIn} className="auth-form">
+              <div className="input-group">
+                <label>Email</label>
+                <input 
+                  type="email" 
+                  placeholder="ndima.co.za"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
 
-            <label htmlFor="password">
-              Password:
-              <input type="password" className="input" required/>
-            </label>
+              <div className="input-group">
+                <label>Password</label>
+                <input 
+                  type="password" 
+                  placeholder="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
 
-            <label htmlFor="privacy" className="checkbox-label">
-              <input type="checkbox" className="checkbox" required/>
-              I agree to the Terms & Privacy
-            </label>
+              <div className="checkbox-group">
+                <input type="checkbox" id="privacy" required />
+                <label htmlFor="privacy">I agree to the Terms & Privacy</label>
+              </div>
 
-            <button type="submit" className="submit-btn">Sign In</button>
+              <button type="submit" className="auth-button">Sign In</button>
+            </form>
 
-            <p className="redirect-text">
-              Don't have an account? <button className="link-button">Sign Up</button>
+            <p className="auth-footer">
+              Don't have an account? <span onClick={() => navigate('/signup')}>Sign Up</span>
             </p>
-          </form>
-        </div>
-
-        <div className="image-div">
-          <img src={pic1} alt="Side visual" />
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
