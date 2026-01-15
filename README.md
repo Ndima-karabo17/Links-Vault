@@ -25,6 +25,17 @@ Functional Breakdown of my site
 2. The Vault(Add Link): A structure from that captures not just a URL, but context, (Title/description/Tags) of why that link matters..
 3. The Library(Link View): A persistent gallery of users connections. It shows data from local storage allow a user to delete, read, and edit.
 
+## Dependencies to install and how to run the project
+
+
+1. Make sure you have Nodejs installed or install it(https://nodejs.org/)
+2. Clone my project repo(https://github.com/Ndima-karabo17/Links-Vault.git) in Visual Studio Code
+3. Open terminal and verify if you are inside Links-Vault if not navigate to it
+4. Run npm install in terminal inside Links-Vault
+5. followed by npm run dev
+ 
+
+
 Workflow of my project
 -
 
