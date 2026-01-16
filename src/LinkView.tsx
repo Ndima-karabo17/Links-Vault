@@ -13,6 +13,7 @@ interface LinkItem {
 const LinkView: React.FC = () => {
   const navigate = useNavigate();
   const [links, setLinks] = useState<LinkItem[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [deleteId, setDeleteId] = useState<number | null>(null);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editFormData, setEditFormData] = useState<LinkItem | null>(null);
@@ -21,6 +22,11 @@ const LinkView: React.FC = () => {
     const savedLinks = JSON.parse(localStorage.getItem('userLinks') || '[]');
     setLinks(savedLinks);
   }, []);
+
+  const filteredLinks = links.filter(link => 
+    link.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    link.tag.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const confirmDelete = () => {
     if (deleteId !== null) {
@@ -83,20 +89,27 @@ const LinkView: React.FC = () => {
       <div className="view-content">
         <header className="view-header">
           <h1>Your Saved Connections</h1>
-          <p>You have {links.length} link{links.length !== 1 ? 's' : ''} saved.</p>
+          <div className="search-container">
+            <input 
+              type="text" 
+              placeholder="Search by title or tag..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+          </div>
+          <p>Showing {filteredLinks.length} of {links.length} links.</p>
         </header>
 
-        {links.length === 0 ? (
+        {filteredLinks.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">📂</div>
-            <h3>No links found</h3>
-            <button className="btn-primary-lg" onClick={() => navigate('/add-link')}>
-              Create First Link
-            </button>
+            <div className="empty-icon">🔍</div>
+            <h3>No matches found</h3>
+            <p>Try adjusting your search or add a new link.</p>
           </div>
         ) : (
           <div className="links-grid">
-            {links.map((link) => (
+            {filteredLinks.map((link) => (
               <div key={link.id} className={`link-card ${editingId === link.id ? 'editing' : ''}`}>
                 {editingId === link.id ? (
                   <div className="edit-form-inline">
@@ -129,7 +142,6 @@ const LinkView: React.FC = () => {
                         <button 
                           className="delete-icon-btn" 
                           onClick={() => setDeleteId(link.id)}
-                          aria-label="Delete link"
                         >
                           &times;
                         </button>
@@ -161,14 +173,10 @@ const LinkView: React.FC = () => {
           <div className="modal-card">
             <div className="modal-warning-icon">⚠️</div>
             <h2>Confirm Deletion</h2>
-            <p>Are you sure you want to delete this link? This action cannot be undone.</p>
+            <p>Are you sure you want to delete this link?</p>
             <div className="modal-buttons">
-              <button className="btn-cancel" onClick={() => setDeleteId(null)}>
-                Cancel
-              </button>
-              <button className="btn-confirm" onClick={confirmDelete}>
-                Delete Forever
-              </button>
+              <button className="btn-cancel" onClick={() => setDeleteId(null)}>Cancel</button>
+              <button className="btn-confirm" onClick={confirmDelete}>Delete Forever</button>
             </div>
           </div>
         </div>
