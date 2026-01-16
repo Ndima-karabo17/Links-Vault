@@ -14,29 +14,61 @@ const LinkView: React.FC = () => {
   const navigate = useNavigate();
   const [links, setLinks] = useState<LinkItem[]>([]);
   const [deleteId, setDeleteId] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editFormData, setEditFormData] = useState<LinkItem | null>(null);
 
-  // Load links from localStorage on component mount
   useEffect(() => {
     const savedLinks = JSON.parse(localStorage.getItem('userLinks') || '[]');
     setLinks(savedLinks);
   }, []);
 
-  // Handle Deletion
   const confirmDelete = () => {
     if (deleteId !== null) {
       const updatedLinks = links.filter(link => link.id !== deleteId);
-      setLinks(updatedLinks);
-      localStorage.setItem('userLinks', JSON.stringify(updatedLinks));
+      saveAndRefresh(updatedLinks);
       setDeleteId(null);
     }
   };
 
+  const startEditing = (link: LinkItem) => {
+    setEditingId(link.id);
+    setEditFormData({ ...link });
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditFormData(null);
+  };
+
+  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (editFormData) {
+      setEditFormData({
+        ...editFormData,
+        [e.target.name]: e.target.value
+      });
+    }
+  };
+
+  const saveEdit = () => {
+    if (editFormData) {
+      const updatedLinks = links.map(link => 
+        link.id === editFormData.id ? editFormData : link
+      );
+      saveAndRefresh(updatedLinks);
+      cancelEdit();
+    }
+  };
+
+  const saveAndRefresh = (updatedLinks: LinkItem[]) => {
+    setLinks(updatedLinks);
+    localStorage.setItem('userLinks', JSON.stringify(updatedLinks));
+  };
+
   return (
     <div className="dashboard-container">
-      {/* Dashboard Header/Nav */}
       <nav className="dashboard-nav">
         <div className="logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-          DigitalSpace
+          Links Vault
         </div>
         <div className="nav-actions">
           <button className="btn-primary" onClick={() => navigate('/add-link')}>
@@ -51,64 +83,79 @@ const LinkView: React.FC = () => {
       <div className="view-content">
         <header className="view-header">
           <h1>Your Saved Connections</h1>
-          <p>You have {links.length} link{links.length !== 1 ? 's' : ''} saved in your library.</p>
+          <p>You have {links.length} link{links.length !== 1 ? 's' : ''} saved.</p>
         </header>
 
         {links.length === 0 ? (
-          /* Empty State */
           <div className="empty-state">
             <div className="empty-icon">📂</div>
             <h3>No links found</h3>
-            <p>Your collection is empty. Start by adding your first favorite connection.</p>
             <button className="btn-primary-lg" onClick={() => navigate('/add-link')}>
               Create First Link
             </button>
           </div>
         ) : (
-          /* Links Grid */
           <div className="links-grid">
             {links.map((link) => (
-              <div key={link.id} className="link-card">
-                <div className="link-info">
-                  <div className="link-header">
-                    <span className="link-tag">{link.tag}</span>
-                    <button 
-                      className="delete-icon-btn" 
-                      onClick={() => setDeleteId(link.id)}
-                      title="Delete Link"
-                    >
-                      &times;
-                    </button>
+              <div key={link.id} className={`link-card ${editingId === link.id ? 'editing' : ''}`}>
+                {editingId === link.id ? (
+                  <div className="edit-form-inline">
+                    <div className="input-group">
+                      <label>Title</label>
+                      <input name="title" value={editFormData?.title} onChange={handleEditChange} />
+                    </div>
+                    <div className="input-group">
+                      <label>URL</label>
+                      <input name="url" value={editFormData?.url} onChange={handleEditChange} />
+                    </div>
+                    <div className="input-group">
+                      <label>Description</label>
+                      <textarea name="description" value={editFormData?.description} onChange={handleEditChange} />
+                    </div>
+                    <div className="input-group">
+                      <label>Tag</label>
+                      <input name="tag" value={editFormData?.tag} onChange={handleEditChange} />
+                    </div>
+                    <div className="edit-actions">
+                      <button className="save-btn" onClick={saveEdit}>Save Changes</button>
+                      <button className="cancel-link-btn" onClick={cancelEdit}>Cancel</button>
+                    </div>
                   </div>
-                  <h3>{link.title}</h3>
-                  <p>{link.description}</p>
-                  <a 
-                    href={link.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="url-display"
-                  >
-                    {link.url.replace(/(^\w+:|^)\/\//, '')} {/* Removes https:// for cleaner look */}
-                  </a>
-                </div>
-                <div className="link-footer">
-                  <button className="edit-btn">Edit Details</button>
-                  <a 
-                    href={link.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="visit-btn"
-                  >
-                    Visit Site ↗
-                  </a>
-                </div>
+                ) : (
+                  <>
+                    <div className="link-info">
+                      <div className="link-header">
+                        <span className="link-tag">{link.tag}</span>
+                        <button 
+                          className="delete-icon-btn" 
+                          onClick={() => setDeleteId(link.id)}
+                          aria-label="Delete link"
+                        >
+                          &times;
+                        </button>
+                      </div>
+                      <h3>{link.title}</h3>
+                      <p>{link.description}</p>
+                      <span className="url-display">
+                        {link.url.replace(/(^\w+:|^)\/\//, '')}
+                      </span>
+                    </div>
+                    <div className="link-footer">
+                      <button className="edit-btn" onClick={() => startEditing(link)}>
+                        Edit Details
+                      </button>
+                      <a href={link.url} target="_blank" rel="noopener noreferrer" className="visit-btn">
+                        Visit Site ↗
+                      </a>
+                    </div>
+                  </>
+                )}
               </div>
             ))}
           </div>
         )}
       </div>
 
-      {/* Confirmation Modal */}
       {deleteId !== null && (
         <div className="modal-overlay">
           <div className="modal-card">
