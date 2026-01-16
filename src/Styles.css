@@ -292,7 +292,7 @@ p {
   font-size: 0.95rem;
 }
 
-/* Style for search input 
+/* Style for search input */
 
 .search-container {
   margin: 20px 0;
@@ -313,4 +313,4 @@ p {
 .search-input:focus {
   border-color: #4a90e2;
 }
-*/
+
