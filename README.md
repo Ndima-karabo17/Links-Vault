@@ -1,81 +1,185 @@
-## Links Vault
+# Links Vault
 
-It is a professional grade Link management Dashboaard designed for users who need a centralized, aesthetic, and secure place to store their most important web connections.
+A professional-grade link management dashboard designed for users who need a centralized, aesthetic, and secure place to store their most important web connections. Links Vault moves away from cluttered browser bookmarks and into a dedicated workspace that feels like a modern product.
 
-The aim of the project
--
-It is to move away from cluttered browser bookmarks and into a dedicated workspace that feels like a modern product.
+---
 
-Core System Architecture
--
-The application is built as a single page website. Instead of the browser reloading every time you click a button or a link, I used React Router to swap the components instantly for a "app-like" experience.
+## Table of Contents
 
-About colors used in my project
--
-I picked baby blue and white theme to project <strong>trust, clarity and productivity</strong>
+- [Description](#description)
+- [Features](#features)
+- [Design Decisions](#design-decisions)
+- [Tech Stack](#tech-stack)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Routing](#routing)
+- [Visuals](#visuals)
+- [Roadmap](#roadmap)
+- [Project Status](#project-status)
 
-I didn't use images in the Auth and Dashboard sections because the user experience is focused entirely on the data.
+---
 
-The Link View page uses CSS Grid system that will automatically calculates how many columns can fit on your screen, to make it look perfect.
+## Description
 
-Functional Breakdown of my site
--
+Links Vault is a single-page React application that gives users a dedicated workspace to store, organize, and revisit their most important web links. Instead of reloading the browser on every action, React Router swaps components instantly for a smooth, app-like experience. Users can register, log in, add links with context (title, description, tags), and manage their personal link library — all persisted in localStorage.
 
-1. The Entry(Landing Page): It have sections that introduces auth pages.It tells you more about the site and who created it.
-2. The Vault(Add Link): A structure from that captures not just a URL, but context, (Title/description/Tags) of why that link matters..
-3. The Library(Link View): A persistent gallery of users connections. It shows data from local storage allow a user to delete, read, and edit.
+---
 
-## Dependencies to install and how to run the project
+## Features
 
+### Authentication
+- Create a new account with email and password
+- Password and confirm password validation on sign up
+- Sign in with registered credentials and agree to Terms and Privacy
+- Redirects automatically after login to the Add Link page
+- Logout button available from the Link View page
 
-1. Make sure you have Nodejs installed or install it(https://nodejs.org/)
-2. Clone my project repo(https://github.com/Ndima-karabo17/Links-Vault.git) in Visual Studio Code
-3. Open terminal and verify if you are inside Links-Vault if not navigate to it
-4. Run npm install in terminal inside Links-Vault
-5. npm install react-router-dom
-6. followed by npm run dev
-7. Follow the link that will show to see the project
+### The Vault — Add Link
+- Structured form that captures not just a URL but full context:
+  - Title
+  - Description
+  - Tags
+- URL format validation on submission
+- Success message on adding a link, then redirects to Link View
 
+### The Library — Link View
+- Persistent gallery of all saved links loaded from localStorage
+- Edit link details with the Edit Details button
+- Visit the saved URL directly with the Visit Site button
+- Remove any link from the collection with the X button
+- Add New Link button available in the top right header
 
-Workflow of my project
--
+### Navigation
+- Single-page app experience powered by React Router
+- No full page reloads — components swap instantly
+- Landing Page introduces the app and links to auth pages
 
-1. The user arrives at the Landing Page
-2. Click Get Started button on the top right.
-3. It will direct you to Create Account Page(Sign up). Use Email and password to create account (fill the form). make sure password and confirm passowrd are the same.
-4. Click SIGN UP button it will redirect you to Sign in page.
-5. Use the credentials that you used to sign up then check on terms and Privacy.
-6. Click sign in button it will show that it is directing you to add a link
-7. In Add Link page fill the form remember it checks the link(Refer from placeholders to understand)
-8. When you are done Click ADD TO COLLECTION button it will say successfully added then redirect you to LinkView page where you can see the added link
-9. On the top right of the page there's ADD NEW LINK you can click there if you want to add another one. Next to ADD NEW LINK button there's Logout Button you can sign out when you are done.
-10. Next to your link details there's Edit Details button if you made a mistake also to VISIT SITE of the link you entered.
-11. There's "x" button if you nolonger want that link in your collections
+---
 
-Screenshots of workflow
--
-Landing Page
--
+## Design Decisions
+
+The app uses a baby blue and white color theme chosen to project trust, clarity, and productivity. The Auth and Dashboard sections intentionally use no images to keep the user experience focused entirely on the data. The Link View page uses a CSS Grid system that automatically calculates how many columns can fit on screen, ensuring a clean layout across all screen sizes.
+
+---
+
+## Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| [React](https://react.dev/) | UI library |
+| [TypeScript](https://www.typescriptlang.org/) | Type-safe JavaScript |
+| [Vite](https://vitejs.dev/) | Build tool and dev server |
+| [React Router DOM](https://reactrouter.com/) | Client-side routing |
+| [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) | Responsive link gallery layout |
+| [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) | Persistent link and user storage |
+
+---
+
+## Requirements
+
+Before installing, make sure you have the following:
+
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- npm (comes with Node.js)
+
+---
+
+## Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Ndima-karabo17/Links-Vault.git
+
+# 2. Navigate into the project folder
+cd Links-Vault
+
+# 3. Install dependencies
+npm install
+
+# 4. Install React Router DOM
+npm install react-router-dom
+
+# 5. Start the development server
+npm run dev
+
+# 6. Open the link shown in the terminal in your browser
+```
+
+---
+
+## Usage
+
+Follow this workflow to use the app:
+
+1. Arrive at the **Landing Page** — read about the app and who created it
+2. Click the **Get Started** button on the top right
+3. Fill in the **Sign Up** form with your email and password — make sure password and confirm password match
+4. Click **Sign Up** — you will be redirected to the Sign In page
+5. Enter your credentials, check the Terms and Privacy checkbox, and click **Sign In**
+6. You will be redirected to the **Add Link** page
+7. Fill in the link form — refer to the placeholders for guidance on what each field expects
+8. Click **Add to Collection** — a success message will appear and you will be redirected to **Link View**
+9. Your saved link will appear in the gallery with options to **Edit Details**, **Visit Site**, or remove it with the **X** button
+10. Use the **Add New Link** button in the top right to add more links
+11. Click **Logout** when you are done
+
+---
+
+## Routing
+
+Client-side routing is handled by React Router:
+
+| Path | Page | Description |
+|------|------|-------------|
+| `/` | Landing Page | Introduction and calls to action |
+| `/register` | Sign Up | Create a new account |
+| `/login` | Sign In | Log in to your account |
+| `/add-link` | Add Link (The Vault) | Add a new link with context |
+| `/links` | Link View (The Library) | View, edit, and delete saved links |
+
+---
+
+## Visuals
+
+### Landing Page
 <img width="1400" height="800" alt="landing page" src="https://github.com/user-attachments/assets/e77a8cbd-61f4-4cde-8842-1b3632f65911" />
 
-Sign Up Page
--
+### Sign Up Page
 <img width="1400" height="800" alt="Sign up page" src="https://github.com/user-attachments/assets/ece1e84d-2ce1-49f1-8821-53504ceadbd7" />
 
-Sign In Page
--
+### Sign In Page
 <img width="1400" height="800" alt="Sign in page" src="https://github.com/user-attachments/assets/945cdeda-cd3b-4cd4-b69a-d1704d828be7" />
 
-Redirection View
--
-
+### Redirection View
 <img width="1400" height="800" alt="Redirecting view" src="https://github.com/user-attachments/assets/b81c7972-61ff-488b-9d33-b3f28ea0bcb1" />
 
-Add Link Page
--
-
+### Add Link Page
 <img width="1400" height="800" alt="Add Link Page" src="https://github.com/user-attachments/assets/ecc48f91-09e3-496e-a20d-1de7199c6ccd" />
 
-Link View Page
--
+### Link View Page
 <img width="1400" height="800" alt="Link View Page" src="https://github.com/user-attachments/assets/9591fca7-3e28-45e3-af13-50b35ec1592e" />
+
+---
+
+## Roadmap
+
+- [ ] Connect to a backend API for multi-device sync
+- [ ] Add tag-based filtering in the Link View
+- [ ] Search links by title or description
+- [ ] Import bookmarks from browser
+- [ ] Share a link collection with others
+- [ ] Dark mode support
+
+---
+
+## Project Status
+
+This project is currently in active development. Core features including authentication, link management, and persistent storage are fully functional. Backend integration and advanced filtering are planned for future updates.
+
+---
+
+## Author
+
+Built by Ndima Mhangwani
+GitHub: [Ndima-karabo17](https://github.com/Ndima-karabo17)
